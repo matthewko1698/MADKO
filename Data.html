@@ -6,27 +6,33 @@
     </script>
   </head>
   <body>
-    <svg>
+    <svg class='one'>
+    </svg>
+    <svg class='two'>
+    </svg>
+    <svg class = 'three'>
 
     </svg>
   </body>
   <script type="text/javascript">
     var gradesP = d3.json('gradeData.json').then(function(data){
-      draw(data,screenWidth,screenHeight)
+      draw(data,700,300,'.one')
+      draw(data,900,500,'.two')
+      draw(data,800,800,'.three')
     });
 
-    var draw =function(data,screenWidth,screenHeight){
+    var draw =function(data,screenWidth,screenHeight,location){
 
-      var svg = d3.select('svg')
+      var svg = d3.select(location)
                   .attr('width',screenWidth)
                   .attr('height',screenHeight);
 
       var margins =
       {
         top:20,
-        bottom:20,
-        left:20,
-        right:20
+        bottom:50,
+        left:50,
+        right:100
       }
 
       var width = screenWidth -margins.left - margins.right;
@@ -40,7 +46,7 @@
                      .domain([0,100])
                      .range([height,0]);
 
-      var colors = d3.scaleOrdinal(d3.schemeAccent);
+      var colors = d3.scaleOrdinal(d3.schemeSet1);
 
       var plot = svg.append('g').classed('plot',true)
                     .attr('transform','translate('+margins.left+","+margins.top+")");
@@ -60,7 +66,21 @@
               .attr('cy',function(d){return yScale(d)})
               .attr('r',7)
 
-      var legend = svg.append('legend')
+      students.selectAll('text')
+              .data(function(d){return d.grades})
+              .enter()
+              .append('text')
+              .attr('x', function(d,i){return xScale(i)})
+              .attr('y',function(d){return yScale(d)})
+              .attr('width',7)
+              .attr('height',10)
+              .text(function(d){return d}).style('text-color','black')
+
+
+
+
+
+      var legend = svg.append('g')
                       .classed('legend', true)
                       .attr('transform', 'translate('+(width+margins.left)+','+margins.top+')');
 
@@ -69,13 +89,13 @@
                               .enter()
                               .append('g')
                               .classed('legendLine',true)
-                              .attr('transform',function(d,i){return 'translate(0,'+ (i + 20)+')'})
+                              .attr('transform',function(d,i){return 'translate(0,'+ (i*50)+')'})
 
       legendLines.append('rect')
                  .attr('x',0)
                  .attr('y',0)
                  .attr("width",10)
-                 .attr('height'10)
+                 .attr('height',10)
                  .attr("fill",function(d){return colors(d.name)});
 
       legendLines.append('text')
@@ -83,8 +103,15 @@
                  .attr('y',10)
                  .text(function(d){return d.name});
 
+var xAxis = d3.axisBottom(xScale);
+svg.append('g').classed('xAxis',true)
+    .call(xAxis)
+    .attr('transform','translate('+margins.left+","+(margins.top+height+10)+')')
 
-
+var yAxis = d3.axisLeft(yScale);
+svg.append('g').classed('yScale',true)
+   .call(yAxis)
+   .attr('transform','translate('+(margins.left-10)+","+margins.top+')')
     }
 
 
