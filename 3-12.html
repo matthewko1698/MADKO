@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <style media="screen">
+      @import url('https://fonts.googleapis.com/css?family=Major+Mono+Display|Poiret+One|Questrial');
+      .explanation, .data{
+        margin: auto;
+        width: 40%;
+        padding:20px;
+        display: inline-block;
+        vertical-align: top;
+        font-family: Questrial;
+        line-height: 1.5em;
+        margin-left: 25px;
+        font-size: 1.5em;
+      }
+      h1{
+        font-family: Questrial;
+        width:40%;
+        margin:auto;
+        font-size: 3em;
+      }
+      h2{
+        font-size: 1.5em;
+      }
+      a{
+        width:50%;
+        margin:auto;
+        font-size: 2em;
+        padding:20px;
+        margin-top: 20px;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Prep 3-12</h1>
+    <div class="explanation">
+      <h2>First Visualization</h2>
+      <p>This visualization allows the viewer to update the data that generates the bar chart in this case. It allows the user to choose a price of a home and mortgage details and calculates how beneficial it would be to rent versus buy a home. The visualization that is interesting to our reading is the bar chart, that resizes itself based on what the inputs are. The visualization resizes the height of the bars depending on what the inputs are, indicating that when the dataset is updated, the chart updates. <br><br>
+        To achieve this, an input method would need to be used to update the dataset. In this case, that is the slider or or input numbers directly. A function is used to take in this parameter and perform the calculations associated with understanding renting versus buying and updates the visuals on the page in real time
+      </p>
+      <a href="https://www.nytimes.com/interactive/2014/upshot/buy-rent-calculator.html?_r=0
+">Visualization 1</a>
+    </div>
+    <div class="data">
+      <h2>Second Visualization</h2>
+      <p>This visualization does not present the whole dataset at once, which makes it more striking overall.
+        There are multiple pieces of data presented on the same svg at once for the different information shown.
+        What I like about the visualization is that it tells a story, and has a concluding ending or answer.
+        <br><br>
+        The effects include using a hover effect that displays the year associated with the data point the mouse is
+        hovering over. There may also be a transition utilized that delays the data presentation so the viewer
+        understands how the data changes over time, which is what is most important to their story. What triggers these
+        animations, however, is not a mouseover effect but it seems to be a scroll effect, which is interesting.
+        Depending on where the user is located on the page triggers which animation to start. I think a way to implement it
+        based on what we know is to create an invisible rectangle that takes up the whole width of the page but not the
+        whole height and on mouseover, trigger the animation, and for other animations do the same.
+      </p>
+      <a href="https://www.bloomberg.com/graphics/2015-whats-warming-the-world/">Visualization 2</a>
+      <h2>Notes</h2>
+      <p>Included 2 visualizations and explanations instead of one, both interesting. Explained how to implement aspects of the
+        animations as well.
+    </p>
+    </div>
+  </body>
+</html>
